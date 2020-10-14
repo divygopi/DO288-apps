@@ -12,13 +12,16 @@ RUN   yum install -y --disableplugin=subscription-manager java-1.8.0-openjdk-hea
       useradd wildfly1 && \
       sudo mkdir -p /opt/app-root/bin
 
+RUN   sudo chown -R wildfly1:wildfly1 /opt/app-root && \
+      sudo chmod -R 700 /opt/app-root
+
 # Copy the runnable fat JAR to the container.
 ADD   https://github.com/RedHatTraining/DO288-apps/releases/download/OCP-4.1-1/hello-java.jar /opt/app-root/bin/
 
 #COPY  run-app.sh /opt/app-root/bin/
 
-RUN   sudo chown -R wildfly1:wildfly1 /opt/app-root && \
-      sudo chmod -R 700 /opt/app-root
+#RUN   sudo chown -R wildfly1:wildfly1 /opt/app-root && \
+ #     sudo chmod -R 700 /opt/app-root
 
 COPY  run-app.sh /opt/app-root/bin/
 
